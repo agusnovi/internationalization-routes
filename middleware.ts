@@ -11,7 +11,9 @@ export default function middleware(request: NextRequest) {
     const locale = getLocale(request, pathname)
     
     const nextResponse = NextResponse.next({request: request})
-    nextResponse.cookies.set('lang', locale)
+    nextResponse.cookies.set('lang', locale, {
+        secure: true
+    })
 
     
     if(hasLocale) return nextResponse
