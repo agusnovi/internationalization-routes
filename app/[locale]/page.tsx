@@ -1,5 +1,6 @@
 import { use } from "react"
 import SelectLocale from "../components/SelectLocale"
+import { getDictionary } from "./dictionaries"
 
 export default function Page({
     params
@@ -7,8 +8,9 @@ export default function Page({
     params: Promise<{locale: string}>
 }) {
     const {locale} = use(params)
+    const dict = use(getDictionary(locale))
     return <>
-        {`Locale ${locale}`}
+        {`${dict.locale} ${locale}`}
         <div>
             <SelectLocale lang={locale}/>
         </div>
